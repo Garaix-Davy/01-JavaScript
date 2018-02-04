@@ -4,132 +4,34 @@
 	<meta charset="utf-8">
 	<title>Array Functions</title>
 
-	<style>
-		li {
-			display: inline-block;
-			text-align: center;
-			border: 1px solid;
-			border-radius: 20px;
-			width: 30px;
-			line-height: 30px;
-			margin: 0.2em;
-		}
-	</style>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script language="JavaScript" type="text/javascript" src="js/functions.js"></script>
 
 </head>
 
 <body>
 
-	<script type="text/javascript">
+	<h1>Code Topic 01 - JavaScript</h1>
+	<h2>JavaScript - Loops, Conditional Statements, Functions, Variables, Parameters, Arrays, Associative Arrays</h2>
+	<h3>This button will demonstrate these topics</h3>
 
+	<button type="button" onclick="generate()">Generate Array</button><br><br>
 
-	function test() {
-		// Declares an array of a random size of between 1 and 8 elements
-		// Using the getRandomInt function to get a random integer. See the getRandomInt function further below.
-		var array = new Array(getRandomInt (1, 8));
-		// Populates each array elements with random numbers between -10 and 10
-		for (var i = 0; i < array.length; i++) {
-			array[i] = getRandomInt (-10, 10);
-		}
-		// Randomly selects an a multiplier between 1 and 10 for the multiply function
-		var multiplier = getRandomInt (1, 10);
-		// Displays the generated array, and the result of each call functions
-		document.getElementById('array').innerHTML = "The array: <ul><li>" + array.join("</li><li>");
-		document.getElementById('addEnds').innerHTML = "The sum of the first and last elements: " + addEnds(array);
-		document.getElementById('getMiddle').innerHTML = "The middle value (or average): " + getMiddle(array);
-		document.getElementById('countEvens').innerHTML = "Amount of even integers in the array: " + countEvens(array);
-		document.getElementById('multiplier').innerHTML = "Multiplier chosen: " + multiplier;
-		document.getElementById('multipliedArray').innerHTML = "Multiplied Array: <ul><li>" + multiply(array, multiplier).join("</li><li>") + "</li></ul>";
-	}
+	<div id='array'></div>
 
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * DEFINING TABLE for the addEnds function                 *
-	 * INPUT: An array of numbers.                             *
-	 * PROCESSING: The first and last array values are added   *
-	 * if the array has more than 1 element.                   *
-	 * OUTPUT: The sum, or index 1's value is returned.        *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	function addEnds(list) {
-		if (list.length > 1) {
-			return list[0] + list[list.length - 1];
-		} else {
-			return list[0];
-		}
-	}
+	<div id='multiplyButton' class='hideOnLoad'>
+		<button type="button" onclick="multiply(array)">Multiply Array</button><br><br>
+	</div>
 
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * DEFINING TABLE for the getMiddle function               *
-	 * INPUT: An array of numbers.                             *
-	 * PROCESSING: The length of the array is identified as    *
-	 * odd or even. If odd, the middle element value is found. *
-	 * If even, the two middle element values are averaged.    *
-	 * OUTPUT: The average of the two middle element values,   *
-	 * or the middle element value is returned.                *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	function getMiddle(list) {
-		if (list.length % 2 == 0) {
-			var lowerMid = list[ (list.length >>> 1) - 1 ];
-			var upperMid = list[list.length >>> 1];
-			return (lowerMid + upperMid) / 2;
-		}
-		return list[list.length >>> 1];
-	}
+	<div id='multiplyArray'></div>
 
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * DEFINING TABLE for the countEvents function             *
-	 * INPUT: An array of numbers.                             *
-	 * PROCESSING: Each element values in the array            *
-	 * are checked if they are an even integer.                *
-	 * If they are, count goes up by 1.                        *
-	 * OUTPUT: The amount of even integers found in the array. *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	function countEvens(list) {
-		var count = 0;
-		for (var i = 0; i < list.length; i++) {
-			if (list[i] % 2 == 0) {
-				count++;
-			}
-		}
-		return count;
-	}
+	<div id='convertButton' class='hideOnLoad'>
+		<button type="button" onclick="convertArray(multipliedArray)">Convert Array</button>
+	</div><br>
 
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * DEFINING TABLE for the multiply function                *
-	 * INPUT: An array of numbers, and the chosen multiplier.  *
-	 * PROCESSING: Each element value from the array           *
-	 * is multiplied by the multiplier.                        *
-	 * OUTPUT: The resulting array is returned.                *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	function multiply(list, multiplier) {
-		for (var i = 0; i < list.length; i++) {
-			list[i] *= multiplier;
-		}
-		return list;
-	}
+	<div id='convertArray'></div><br>
 
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 * DEFINING TABLE for the getRandomInt                     *
-	 * INPUT: A min and max number is passed in the function.  *
-	 * PROCESSING: A random integer is generated between the   *
-	 * min and max number, inclusively.                        *
-	 * OUTPUT: The random number is returned.                  *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	function getRandomInt (min, max) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	}
-
-	</script>
-
-	<h3>This button will generate and display a random array of numbers, and execute some functions on it.</h3>
-
-	<button type="button" onclick="test()">Test</button><br><br>
-
-	<div id='array'></div><br>
-	<div id='addEnds'></div><br>
-	<div id='getMiddle'></div><br>
-	<div id='countEvens'></div><br>
-	<div id='multiplier'></div><br>
-	<div id='multipliedArray'></div><br>
+	<div id='debug'></div><br>
 
 </body>
 
